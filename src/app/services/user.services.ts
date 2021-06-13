@@ -29,8 +29,4 @@ export class UserServices{
     return this.http.delete<void>(`${this.apiServiceUrl}/user/delete/${userId}`);
   }
 
-/*  public identifyUser(userEmail : string, userPassword : string): Observable<User>{
-    return this.http.get<User>(`${this.apiServiceUrl}/identify`, user);
-  }*/
-
 }

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <title>Title</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css"/>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"/>
+</head>
+
+<body>
+<div class="container">
+  <div class="row">
+    <div *ngFor="let product of products; let i = index;"  class="col-md-6 col-xl-3">
+     <form #productForm="ngForm" (ngSubmit)="addProductToCart(product, quantity)">
+      <div class="card border-0 mb-5 shadow-lg _offer">
+            <span
+              class="_offerRibbon py-1 px-4 _bgPink
+               text-white text-uppercase position-absolute"
+            >
+              Offer
+            </span>
+        <img src="assets/img/default-product.png"
+          alt="image"
+          class="card-img-top border-bottom"
+             name="productImage"
+        />
+        <div class="card-body position-relative">
+          <div class="d-flex justify-content-between">
+            <h4 class="card-title text-truncate font-weight-bold">
+              {{product?.productName}}
+            </h4>
+            <label class="_addtoFav">
+              <input type="checkbox" name="favourite" class="d-none"/>
+              <i class="material-icons active d-none _textPink">
+                favorite
+              </i>
+              <i class="material-icons inactive _textPink">
+                favorite_border
+              </i>
+            </label>
+          </div>
+
+          <div class="card-subtitle text-muted text-truncate my-2">
+            {{product.productDescription}}
+         </div>
+          <div>
+            <input type="number"  min="1" max="10" value="1" [(ngModel)]="quantity" name="productQuantity"></div>
+          <div class="card-text d-flex justify-content-between mt-5 mb-3">
+            <span>Free Shipping</span>
+            <span class="_priceSection position-relative">
+                  <div class="_now h5 _textPink font-weight-bolder">{{product?.productPrice}}</div>
+
+                </span>
+          </div>
+          <div>
+
+          </div>
+          <button class="btn p-3 _cartBtn rounded-0 _bgPink text-white text-uppercase d-inline-flex align-items-center position-absolute" type="submit">
+            <span>Add to cart</span><i class="material-icons ml-2 font-weight-light">add_shopping_cart</i></button>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
