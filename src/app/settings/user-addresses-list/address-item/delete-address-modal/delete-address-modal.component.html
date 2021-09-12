@@ -1,0 +1,22 @@
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteAddressModal" tabindex="-1" role="dialog" aria-labelledby="deleteAddressModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="deleteAddressModalLabel">Delete Address</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete address {{deleteAddress?.firstName}} {{deleteAddress?.lastName}} {{deleteAddress?.addressLine1}}?</p>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button (click)="onDeleteAddress(deleteAddress.id)" class="btn btn-danger" data-dismiss="modal">Yes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

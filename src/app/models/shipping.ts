@@ -1,6 +1,5 @@
 export interface Shipping{
-  shippingId: number;
+  id: number;
   shippingName: string;
   shippingPrice: number;
-  shippingUserOrder: number;
 }

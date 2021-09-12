@@ -1,0 +1,175 @@
+<h1>Checkout Order</h1>
+<h2>Products</h2>
+<div class="container" id="cartList">
+  <ul style="list-style-type:none">
+    <li *ngFor="let item of cartContent; let i = index">
+      <div class="container" id="cartContentContainer">
+        <div id="productImage">
+          <img src="{{item.product.imageURL}}"
+               class="img-responsive float-left"
+               style="max-height: 100px;">
+        </div>
+        <div id="productName">
+          <h2>{{item.product.productName}}</h2>
+        </div>
+        <div id="productDescription">
+          <p>{{item.product.productDescription}}</p>
+        </div>
+        <div class="float-right" id="productPrice">
+          <p>{{item.product.productPrice}}€ x {{item.orderLine.quantity}} = {{item.product.productPrice * item.orderLine.quantity}}€</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="container xl-12">
+  <div class="float-right">
+    <h2>Total Price</h2>
+    <h3>{{totalPrice}}€ <br>
+      {{shippingPrice}}€ shipping</h3>
+  </div>
+</div>
+<div class="container xl-12" id="formContainer">
+  <form class="form-inline" [formGroup]="orderDetailsForm" (ngSubmit)="onSubmit(orderDetailsForm.value)">
+    <div class="row">
+      <div class="container col-md-4" id="billingAddressContainer">
+        <h2>Select a billing address</h2>
+        <ul style="list-style-type:none">
+          <li *ngFor="let address  of userAddresses; let i = index; let last = last">
+            <div class="form-check" id="billingAddressForm">
+              <input class="form-control"
+                     formControlName="billingAddress"
+                     type="radio"
+                     id="billingAddressRadio"
+                     (change)="onBillingAddressChange(address.id)"
+                     [value]="address.id">
+              <label class="form-check-label" for="billingAddressRadio">
+                {{address?.firstName}} {{address?.lastName}}<br>
+                {{address?.addressLine1}}<br>
+                {{address?.addressLine2}}<br>
+                {{address?.city}} {{address?.zipCode}}<br>
+                {{address?.country}}<br>
+              </label>
+              <br>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="container col-md-4">
+        <h2>Select a shipping address</h2>
+        <ul style="list-style-type:none">
+          <li *ngFor="let address  of userAddresses; let i = index; let last = last">
+
+            <input class="form-control"
+                   formControlName="shippingAddress"
+                   type="radio"
+                   id="shippingAddressRadio"
+                   (change)="onShippingAddressChange(address.id)"
+                   [value]="address.id">
+            <label class="form-check-label" for="shippingAddressRadio">
+              {{address?.firstName}} {{address?.lastName}}<br>
+              {{address?.addressLine1}}<br>
+              {{address?.addressLine2}}<br>
+              {{address?.city}} {{address?.zipCode}}<br>
+              {{address?.country}}<br>
+            </label>
+            <br>
+          </li>
+        </ul>
+      </div>
+
+      <div class="container col-md-4">
+        <h2>Select a Shipping Type</h2>
+        <ul style="list-style-type:none">
+          <li *ngFor="let shipping  of shippings; let i = index">
+            <div class="form-check">
+              <input class="form-control"
+                     type="radio"
+                     formControlName="shipping"
+                     id="shippingRadio"
+                     [value]="shipping.id"
+                     (change)="onShippingTypeChange(shipping.id, shipping.shippingPrice)">
+              <label class="form-check-label" for="shippingRadio">
+                {{shipping.shippingName}}: {{shipping.shippingPrice}}€
+              </label>
+            </div>
+          </li>
+        </ul>
+
+        <h2>Select a Payment Type</h2>
+        <ul style="list-style-type:none">
+          <li *ngFor="let paymentType  of paymentTypes; let i = index">
+            <div class="form-check">
+              <input class="form-check-input"
+                     type="radio"
+                     formControlName="payment"
+                     id="paymentTypeRadio{{i}}"
+                     (change)="onPaymentTypeChange(paymentType)"
+                     [value]="paymentType">
+              <label #selectedPaymentType class="form-check-label" for="paymentTypeRadio{{i}}">
+                {{paymentType}}
+              </label>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container col-xl-12">
+      <button type="submit" class="btn btn-dark float-right">Submit</button>
+    </div>
+  </form>
+</div>
+
+<!--
+<form class="form-inline" [formGroup]="orderDetailsForm" (ngSubmit)="onSubmit(orderDetailsForm.value)">
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Select a billing address</h2>
+
+      <div class="form-check" id="billingAddressDiv"
+           *ngFor="let address  of userAddresses; let i = index; let last = last">
+        <input class="form-control"
+               formControlName="billingAddress"
+               type="radio"
+               id="billingAddressRadio"
+               (change)="onShippingAddressChange(address.id)"
+               [value]="address.id">
+        <label class="form-check-label" for="billingAddressRadio">
+          {{address?.firstName}} {{address?.lastName}}<br>
+          {{address?.addressLine1}}<br>
+          {{address?.addressLine2}}<br>
+          {{address?.city}} {{address?.zipCode}}<br>
+          {{address?.country}}<br>
+        </label>
+        <br>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <h2>Select a shipping address</h2>
+    <div class="container">
+      <div class="form-check w-100 p-1" id="shippingAddressDiv" *ngFor="let address  of userAddresses; let i = index;">
+        <input class="form-control"
+               type="radio"
+               formControlName="shippingAddress"
+               id="shippingAddressId"
+               [value]="address.id"
+               (change)="onBillingAddressChange(address.id)"
+        >
+        <label class="form-check-label" for="shippingAddressId">
+          {{address.firstName}} {{address.lastName}}<br>
+          {{address.addressLine1}}<br>
+          {{address.addressLine2}}<br>
+          {{address.city}} {{address.zipCode}}<br>
+          {{address.country}}
+        </label>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</form>
+-->

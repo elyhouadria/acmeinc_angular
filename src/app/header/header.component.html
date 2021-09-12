@@ -7,88 +7,28 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav ml-auto w-100 justify-content-end">
-      <li class="nav-item active">
-        <a class="nav-link" (click)="onOpenModal(null, 'add')">Create Account<span class="sr-only">(current)</span></a>
+      <li class="nav-item active" *ngIf="!isAuthenticated">
+        <a class="nav-link" id="createUserLink" style="cursor: pointer" (click)="onOpenModal(null, 'add')">Create Account<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item active">
-        <!--<a class="nav-link" (click)="onOpenModal(null, 'login')">Login<span class="sr-only">(current)</span></a>-->
-        <a class="nav-link" href="http://localhost:4200/login">Login<span class="sr-only">(current)</span></a>
+      <li class="nav-item active" *ngIf="!isAuthenticated">
+        <a class="nav-link" id="loginLink" routerLink="/login" style="cursor: pointer">Login<span
+          class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active" *ngIf="isAuthenticated">
+        <a class="nav-link" id="userName" routerLink="/settings/profile" style="cursor: pointer"><i class="fa fa-cogs" aria-hidden="true"></i> Hello {{userName}}<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active" *ngIf="isAuthenticated">
+        <a class="nav-link" id="logoutLink" (click)="onLogout()" style="cursor: pointer">Logout<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
         <app-cart></app-cart>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input type="search" (ngModelChange)="searchProducts(key.value)" #key="ngModel" ngModel  name="key" id="searchProducts" class="form-control mr-sm-2" placeholder="Search products..."
+      <input type="search" (ngModelChange)="searchProducts(key.value)" #key="ngModel" ngModel name="key"
+             id="searchProducts" class="form-control mr-sm-2" placeholder="Search products..."
              required>
     </form>
   </div>
 </nav>
-<!-- Add User Modal -->
-<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addUserModalLabel">Create Account</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form #addForm="ngForm" (ngSubmit)="onAddUser(addForm)">
-          <div class="form-group">
-            <label for="userFirstName">Name</label>
-            <input type="text" ngModel name="firstName" class="form-control" id="userFirstName" placeholder="First Name" required>
-          </div>
-          <div class="form-group">
-            <label for="userLastName">Name</label>
-            <input type="text" ngModel name="lastName" class="form-control" id="userLastName" placeholder="Last Name" required>
-          </div>
-          <div class="form-group">
-            <label for="loginUserEmail">Email Address</label>
-            <input type="email" ngModel name="email" class="form-control" id="loginUserEmail" placeholder="Email" required>
-          </div>
-          <div class="form-group">
-            <label for="loginUserPassword">Password</label>
-            <input type="password" ngModel name="password" class="form-control" id="loginUserPassword" placeholder="Input Password" required>
-          </div>
-          <div class="modal-footer">
-            <button type="button" id="add-user-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Save changes</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
- <!--Login Modal-->
-<!--<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="userLoginLabel">Login</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
-          <div class="form-group">
-            <label for="userEmail">email</label>
-            <input type="text" ngModel name="userName" class="form-control" id="userEmail" placeholder="Email" required>
-          </div>
-          <div class="form-group">
-            <label for="userLastName">Password</label>
-            <input type="text" ngModel name="password" class="form-control" id="userPassword" placeholder="Password" required>
-          </div>
-          <div class="modal-footer">
-            <button type="button" id="user-login-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary">Login</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>-->
+<app-add-user-modal></app-add-user-modal>

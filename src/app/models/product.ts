@@ -1,8 +1,15 @@
+
+
+export interface ProductPagination{
+  content: Product[];
+  totalElements: number;
+}
+
 export interface Product{
-  productId: number;
+  id: number;
   productName: string;
   productDescription : string;
   productPrice: number;
-  productImageUrl: string;
-  productCategoryId: number;
+  imageURL: string;
+  category: number;
 }

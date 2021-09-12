@@ -1,0 +1,81 @@
+<div class="col-md-12">
+  <form [formGroup]="editProfileForm" (ngSubmit)="onUpdateProfile()">
+    <div class="form-group">
+      <label for="id">Id</label>
+      <input type="number"
+             [readonly]="true"
+             name="id"
+             class="form-control"
+             formControlName="id"
+             id="id"
+             placeholder="id">
+    </div>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text"
+             name="firstName"
+             class="form-control"
+             id="firstName"
+             formControlName="firstName"
+             placeholder="First Name">
+    </div>
+    <div *ngIf="firstName?.errors?.pattern">
+      <a class="inline float-right" style="color: red">First name not valid.</a>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text"
+             name="lastName"
+             class="form-control"
+             id="lastName"
+             formControlName="lastName"
+             placeholder="Last Name">
+    </div>
+    <div *ngIf="lastName?.errors?.pattern">
+      <a class="inline float-right" style="color: red">Last name not valid.</a>
+    </div>
+    <div class="form-group">
+      <label for="email">email</label>
+      <input type="text"
+             [readonly]="true"
+             name="email"
+             class="form-control"
+             formControlName="email"
+             id="email"
+             placeholder="email">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password"
+             [readonly]="true"
+             name="password"
+             class="form-control"
+             formControlName="password"
+             id="password"
+             placeholder="password">
+    </div>
+    <div class="form-group">
+      <label for="creationDate">Account Creation Date</label>
+      <input type="string"
+             [readonly]="true"
+             name="creationDate"
+             class="form-control"
+             formControlName="creationDate"
+             id="creationDate"
+             placeholder="creationDate">
+    </div>
+    <div class="form-group">
+      <label for="roles">Roles</label>
+      <input type="text"
+             [readonly]="true"
+             name="authorities"
+             class="form-control"
+             formControlName="authorities"
+             id="roles"
+             placeholder="roles">
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+    </div>
+  </form>
+</div>

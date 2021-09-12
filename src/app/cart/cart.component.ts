@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {OrderLine} from "../models/orderLine";
-import {OrderlineServices} from "../services/orderline.services";
-import {DataServices} from "../services/data.services";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ShoppingCartItem} from "../models/shopping-cart-item";
+import {ShoppingCartService} from "../services/shopping-cart.service";
 
 @Component({
   selector: 'app-cart',
@@ -10,38 +9,17 @@ import {DataServices} from "../services/data.services";
 })
 export class CartComponent implements OnInit {
 
-  public orderLines!: OrderLine[];
-  public orderLinesStrings!: String[];
+  public cartContent!: ShoppingCartItem[];
 
-  constructor(private orderLineServices: OrderlineServices,
-              private data: DataServices) {}
+  constructor(private cartService: ShoppingCartService) {}
 
 
   ngOnInit(): void {
-    this.data.currentOrderLines.subscribe(orderLines =>this.orderLines = orderLines);
-    this.data.currentOrderLinesString.subscribe(orderLinesString => this.orderLinesStrings = orderLinesString);
-    console.log("Synced in cart: "+ this.orderLines);
+    this.cartService.currentCartContent.subscribe(cartContent => this.cartContent = cartContent)
   }
 
-  players = [
-    "Sachin Tendulkar",
-    "Ricky Ponting",
-    "Virat Kohli",
-    "Kumar Sangakkara",
-    "Jacques Kallis",
-    "Hashim Amla    ",
-    "Mahela Jayawardene    ",
-    "Brian Lara",
-    "Rahul Dravid",
-    "AB de Villiers"
-  ]
-  selected = "----";
-
-  update(e:any){
-    this.selected = e.target.value
+  public removeCartItem(i: number) {
+    this.cartContent?.splice(i,1);
+    this.cartService.cartContentSource.next(this.cartContent.slice());
   }
-
-
-
-
 }

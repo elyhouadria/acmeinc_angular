@@ -1,0 +1,37 @@
+<a>Total Amount {{totalPrice}}</a>
+<form [formGroup]="ccDetailsForm" (ngSubmit)="submitCardDetails(ccDetailsForm.value)">
+
+    <div>
+      <label for="ccNumberField">Credit Card number</label>
+      <div *ngIf="ccNumber?.errors?.pattern">
+        <a class="inline float-right" style="color: red">First name not valid.</a>
+      </div>
+      <input class="form-control"
+             formControlName="ccNumber"
+             type="number"
+             id="ccNumberField">
+    </div>
+
+    <br>
+    <div>
+      <label for="ccExpiryDateField">Credit Card expiry date</label>
+      <div *ngIf="ccExpiryDate?.errors?.pattern">
+        <a class="inline float-right" style="color: red">Credit Card number not valid.</a>
+      </div>
+      <input class="form-control"
+             formControlName="ccExpiryDate"
+             type="text"
+             id="ccExpiryDateField">
+    </div>
+  <div>
+    <label for="cvcCodeField">Credit Card CVC code</label>
+    <div *ngIf="ccCvcCode?.errors?.pattern">
+      <a class="inline float-right" style="color: red">CVC code not valid.</a>
+    </div>
+    <input class="form-control"
+             formControlName="ccCvcCode"
+             type="number"
+             id="cvcCodeField">
+    </div>
+  <button type="submit" class="btn btn-dark float-right">Submit</button>
+</form>

@@ -1,9 +1,11 @@
 export interface OrderLine {
-
-  orderLineId: number;
-  orderlineQuantity: number;
-  orderLineDate: Date;
-  orderLineProductId: number;
-  orderLineUserOrderId: number
-
+  id: number;
+  quantity: number;
+  date: Date;
+  product: {
+    id: number
+  };
+  userOrder: {
+    id: number
+  };
 }

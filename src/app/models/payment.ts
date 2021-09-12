@@ -1,8 +1,7 @@
 export interface Payment{
-  paymentId: number;
-  paymentAmount: number;
-  paymentCurrency: string;
+  id: number;
+  amount: number;
+  currency: string;
   paymentStatus: string;
   paymentType: string;
-  userOrderId: number
 }

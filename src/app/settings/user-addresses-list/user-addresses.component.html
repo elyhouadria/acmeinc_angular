@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-lg-11 offset-md-2" id="new-address-button">
+    <button class="btn btn-success" (click)="onOpenModal(null, 'add')">New Address</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-lg-11 col-md-11 col-xs-11 offset-md-2">
+    <app-address-item
+      *ngFor="let address of userAddresses; let i = index"
+      [addressItem]="address"
+    ></app-address-item>
+  </div>
+</div>
+<app-new-address-modal></app-new-address-modal>
+<app-edit-address-modal></app-edit-address-modal>
+<app-delete-address-modal></app-delete-address-modal>
+

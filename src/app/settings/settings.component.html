@@ -1,0 +1,22 @@
+<div class="row">
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <h1>Settings</h1>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active">
+        <a routerLink="/settings/profile">Profile</a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/settings/addresses">Addresses</a>
+      </li>
+      <li class="active">
+        <a>Orders</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="col-md-11">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

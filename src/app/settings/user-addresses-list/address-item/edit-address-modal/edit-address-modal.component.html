@@ -1,0 +1,123 @@
+<!--edit address modal-->
+<div class="modal fade" id="updateAddressModal" tabindex="-1" role="dialog" aria-labelledby="AddressEditModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="updateAddressModalLabel">Edit Address</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editAddressForm" (ngSubmit)="onUpdateAddress(editAddressForm.value)">
+          <div class="form-group">
+            <input type="hidden"
+                   name="id"
+                   class="form-control"
+                   formControlName="id"
+                   id="id">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text"
+                     name="firstName"
+                     class="form-control"
+                     formControlName="firstName"
+                     id="firstName"
+                     placeholder="First Name">
+            </div>
+          </div>
+          <div *ngIf="firstName?.errors?.pattern">
+            <a class="inline float-right" style="color: red">First name not valid.</a>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text"
+                   name="lastName"
+                   class="form-control"
+                   formControlName="lastName"
+                   id="lastName"
+                   placeholder="Last Name">
+          </div>
+          <div *ngIf="lastName?.errors?.pattern">
+            <a class="inline float-right" style="color: red">Last name not valid.</a>
+          </div>
+          <div class="form-group">
+            <label for="addressLine1">Address Line 1</label>
+            <input type="text"
+                   name="addressLine1"
+                   class="form-control"
+                   formControlName="addressLine1"
+                   id="addressLine1"
+                   placeholder="Address Line 1">
+          </div>
+          <div *ngIf="addressLine1?.errors?.pattern">
+            <a class="inline float-right" style="color: red">AddressLine1 not valid.</a>
+          </div>
+          <div class="form-group">
+            <label for="addressLine2">Address Line 2</label>
+            <input type="text"
+                   name="addressLine2"
+                   class="form-control"
+                   formControlName="addressLine2"
+                   id="addressLine2"
+                   placeholder="Address Line 2">
+          </div>
+          <div *ngIf="addressLine2?.errors?.pattern">
+            <a class="inline float-right" style="color: red">AddressLine2 not valid.</a>
+          </div>
+          <div class="form-group">
+            <label for="zipCode">Zip Code</label>
+            <input type="text"
+                   name="zipCode"
+                   class="form-control"
+                   formControlName="zipCode"
+                   id="zipCode"
+                   name="zipCode" placeholder="Zip Code">
+          </div>
+          <div *ngIf="zipCode?.errors?.pattern">
+            <a class="inline float-right" style="color: red">Zip Code not valid.</a>
+          </div>
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text"
+                   name="city"
+                   class="form-control"
+                   formControlName="city"
+                   id="city"
+                   placeholder="City">
+          </div>
+          <div *ngIf="city?.errors?.pattern">
+            <a class="inline float-right" style="color: red">City name not valid.</a>
+          </div>
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text"
+                   name="country"
+                   class="form-control"
+                   formControlName="country"
+                   id="country"
+                   name="country"
+                   placeholder="Country">
+          </div>
+          <div *ngIf="country?.errors?.pattern">
+            <a class="inline float-right" style="color: red">Country name not valid.</a>
+          </div>
+          <div class="modal-footer">
+            <button type="button"
+                    id="close-edit-modal"
+                    data-dismiss="modal"
+                    class="btn btn-secondary">Close
+            </button>
+            <button [disabled]="editAddressForm.invalid"
+                    id="button_submit"
+                    type="submit"
+                    class="btn btn-primary">Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

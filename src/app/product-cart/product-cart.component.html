@@ -1,0 +1,15 @@
+<h1>Shopping Cart</h1>
+<div class="d-inline-block">
+  <p class="list-group-item-text" *ngFor="let cartItem of cartContent; let i = index">
+    {{cartItem.product.productName}}
+    <br>
+    {{cartItem.product.productPrice}}€ x {{cartItem.orderLine.quantity}}= {{cartItem.product.productPrice * cartItem.orderLine.quantity}}
+    <a (click)="removeCartItem(i)"
+       class="btn btn-secondary btn-sm float-right"
+       data-placement="top"
+       data-original-title="Delete">
+      <i class="fa fa-times" style=""></i>
+    </a>
+  </p>
+  <button type="button" routerLink="/checkout" class="btn btn-dark btn-primary btn-block">Checkout</button>
+</div>

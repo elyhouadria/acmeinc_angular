@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <title>Title</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css"/>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"/>
+</head>
+<div class="offset-md-2 col-xl-12 col-md-12 col-xs-12">
+  <p>category-detail works!</p>
+  <img src="{{category?.imageURL}}">
+  <h1>{{category?.name}}</h1>
+  <a> {{category?.description}}</a>
+</div>
+<app-product-list [products]="products"></app-product-list>
+

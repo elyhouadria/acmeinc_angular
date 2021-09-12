@@ -1,0 +1,32 @@
+#formContainer{
+  display: inline-block;
+}
+img {
+  display: inline-block;
+  margin: 0% 1%;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom:1px solid lightgray;
+  padding: 1%;
+}
+
+li:last-child {
+  border: none;
+}
+
+label {
+  padding: 3px;
+}
+
+h2 {
+  color: black;
+  font-size: 18px;
+}
+
+input[type="radio"]{
+
+}

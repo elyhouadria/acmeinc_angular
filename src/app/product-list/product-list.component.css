@@ -1,37 +1,51 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
 @import url('https://fonts.googleapis.com/css?family=Courgette');
+
+.list-group-item {
+  flex: 1;
+}
+
 * {
   font-family: "Open Sans", sans-serif;
 }
-/***********************/
 
-body{
+/************************/
+
+body {
   padding-top: 60px;
-.subscribe{
+}
+
+.subscribe {
   position: fixed;
   top: 10px;
   right: 10px;
   text-align: center;
   z-index: 5000;
   border-radius: 4px;
-  border:1px solid #ffffff;
-a{
+  border: 1px solid #ffffff;
+
+}
+
+a {
   display: inline-block;
   border-radius: inherit;
   padding: 10px 20px;
-  background-color: #ff0000;
-  color:#ffffff;
+  background-color: #ffffff;
+  color: #ffffff;
   text-decoration: none;
-  font-family: 'Courgette', cursive;
-&:hover{
-   background-color: darken(#ff0000,10%);
- }
-span{
+}
+
+
+:hover {
+  background-color: darken(#ff0000, 10%);
+}
+
+span {
   margin-left: 2px;
 }
-}
-}
-}
+
+
+
 /********************/
 
 ._bgPink {
@@ -55,6 +69,7 @@ span{
   top: 0.625rem;
   border-color: #212529;
 }
+
 ._offerRibbon::before, ._offerRibbon::after {
   content: "";
   display: inline-flex;
@@ -67,19 +82,11 @@ span{
   right: -1rem;
   border: 1rem solid transparent;
 }
+
 ._offerRibbon::before {
   border-top-color: inherit;
 }
+
 ._offerRibbon::after {
   border-bottom-color: inherit;
-}
-
-._addtoFav {
-  cursor: pointer;
-}
-._addtoFav input[type=checkbox]:checked ~ .active {
-  display: inline-block !important;
-}
-._addtoFav input[type=checkbox]:checked ~ .inactive {
-  display: none;
 }

@@ -1,20 +1,22 @@
-<!--<select #cartList (change)="update($event)">
-  <option value="default">ProductCart</option>
-  <option *ngFor="let orderLinesString of orderLinesStrings" [value]="orderLinesString">
-    {{orderLinesString}}
-  </option>
-</select>-->
-
 <li class="nav-item dropdown">
-  <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Cart({{orderLinesStrings.length}})
+  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+     aria-haspopup="true" aria-expanded="false">
+    Cart({{cartContent?.length}})
   </a>
-  <div  class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <option *ngFor="let orderLinesString of orderLinesStrings" [value]="orderLinesString">
-      {{orderLinesString}}
-    </option>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
+    <div *ngFor="let cartItem of cartContent; let i = index">
+      <a>{{cartItem.product.productName}}</a>
+      <br>
+      <a>{{cartItem.product.productPrice}}€ x {{cartItem.orderLine.quantity}}
+        = {{ cartItem.product.productPrice * cartItem.orderLine.quantity}}€</a>
+      <div class="form-group">
+
+      </div>
+
+    </div>
     <div class="dropdown-divider"></div>
-    <button type="button" class="btn btn-primary btn btn-primary btn-lg btn-block">Checkout</button>
+
+    <button type="button" routerLink="/checkout" class="btn btn-dark btn-primary btn-block">Checkout</button>
   </div>
 </li>

@@ -1,0 +1,109 @@
+<!-- Add Address Modal -->
+<div class="modal fade" id="addAddressModal" tabindex="-1" role="dialog" aria-labelledby="addAddressModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="addAddressModalLabel">Add Address</h1>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addAddressForm" (ngSubmit)="onAddAddress(addAddressForm)">
+          <div class="form-group">
+            <label for="addressFirstName">First Name</label>
+            <input type="text"
+                   formControlName="firstName"
+                   class="form-control"
+                   id="addressFirstName"
+                   placeholder="Name">
+          </div>
+          <div *ngIf="firstName?.errors?.pattern">
+            <a class="inline float-right" style="color: red">First name not valid.</a>
+          </div>
+          <div class="form-group">
+            <label for="addressLastName">Last Name</label>
+            <input type="text"
+                   class="form-control"
+                   formControlName="lastName"
+                   id="addressLastName"
+                   placeholder="Last Name">
+          </div>
+          <div *ngIf="lastName?.errors?.pattern">
+            <a class="inline float-right" style="color: red">Last name not valid.</a>
+          </div>
+          <div class="form-group">
+            <label for="addressLine1">Address Line 1</label>
+            <input type="text"
+                   class="form-control"
+                   id="addressLine1"
+                   formControlName="addressLine1"
+                   placeholder="Address Line 1">
+          </div>
+          <div *ngIf="addressLine1?.errors?.pattern">
+            <a class="inline float-right" style="color: red">addressLine1 not valid.</a>
+          </div>
+          <div class="form-group">
+            <label for="addressLine2">Address Line 2</label>
+            <input type="text"
+                   class="form-control"
+                   id="addressLine2"
+                   name="addressLine2"
+                   formControlName="addressLine2"
+                   placeholder="Address Line 2">
+          </div>
+          <div *ngIf="addressLine2?.errors?.pattern">
+            <a class="inline float-right" style="color: red">addressLine2 not valid.</a>
+          </div>
+          <div class="form-group">
+            <label for="addressZipCode">Zip Code</label>
+            <input type="text"
+                   class="form-control"
+                   id="addressZipCode"
+                   formControlName="zipCode"
+                   name="zipCode"
+                   placeholder="zipCode">
+          </div>
+          <div *ngIf="zipCode?.errors?.pattern">
+            <a class="inline float-right" style="color: red">Zip code not valid.</a>
+          </div>
+          <div class="form-group">
+            <label for="addressCity">City</label>
+            <input type="text"
+                   formControlName="city"
+                   class="form-control"
+                   id="addressCity"
+                   name="city"
+                   placeholder="city">
+          </div>
+          <div *ngIf="city?.errors?.pattern">
+            <a class="inline float-right" style="color: red">City name not valid.</a>
+          </div>
+          <div class="form-group">
+            <label for="addressCountry">Country</label>
+            <input type="text"
+                   class="form-control"
+                   formControlName="country"
+                   id="addressCountry"
+                   name="country"
+                   placeholder="country">
+          </div>
+          <div *ngIf="country?.errors?.pattern">
+            <a class="inline float-right" style="color: red">Country name not valid.</a>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="add-address-form" data-dismiss="modal" class="btn btn-secondary">Close</button>
+            <button [disabled]="addAddressForm.invalid" type="submit" class="btn btn-primary">Add
+              Address
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

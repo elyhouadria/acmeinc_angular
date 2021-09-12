@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {UserServices} from "./services/user.services";
-import {NgForm} from "@angular/forms";
-import {User} from "./models/user";
-import {HttpErrorResponse} from "@angular/common/http";
-import {AuthenticationService} from "./services/authentication.service";
+import {AuthenticationService} from "./auth/authentication.service";
+import {HeaderComponent} from "./header/header.component";
+import {ShoppingCartService} from "./services/shopping-cart.service";
 
 @Component({
   selector: 'app-root',
@@ -12,16 +10,12 @@ import {AuthenticationService} from "./services/authentication.service";
 })
 export class AppComponent implements OnInit {
 
+  constructor(private authenticationService: AuthenticationService,
+              private cartService: ShoppingCartService) {}
+
   ngOnInit() {
+    this.authenticationService.autologin();
+    this.cartService.checkLocalCart();
   }
 
-/*  constructor(private authenticationService: AuthenticationService) {
-    let user$ = authenticationService.login("elyh@ymail.com", "password");
-
-    user$.subscribe(
-      (data: any) => console.log(data),
-      err => console.error(err)
-    );
-
-  }*/
 }

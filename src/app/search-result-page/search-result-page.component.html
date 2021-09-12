@@ -1,0 +1,4 @@
+<h1 *ngIf="keyword">Search results for "{{keyword}}":</h1>
+<h1 *ngIf="!keyword">Please enter some keywords</h1>
+<h1 *ngIf="searchResultList.length == 0">No results</h1>
+<app-product-list [products]="searchResultList"></app-product-list>

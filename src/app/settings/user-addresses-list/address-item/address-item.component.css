@@ -1,0 +1,22 @@
+#btn btn-primary tooltips {
+  margin-left :10px
+}
+
+#address-container{
+  margin-right:20px;
+
+}
+
+list-group-item-text float-left{
+  color: red;
+}
+
+.fa-pencil{
+  color: white;
+  float: right;
+}
+
+.fa-times {
+  color: white;
+  float: right
+}
