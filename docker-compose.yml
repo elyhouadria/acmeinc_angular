@@ -1,0 +1,73 @@
+# Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
+version: '3.7'
+
+# Define services
+services:
+  # App backend service
+  acme_backend_container:
+    container_name: acme_backend_container
+    image: acme_backend_image:latest
+    # Configuration for building the docker image for the backend service
+    #build:
+      #context: spring-boot-oauth2-social-login # Use an image built from the specified dockerfile in the `spring-boot-oauth2-social-login` directory.
+      #dockerfile: Dockerfile
+    ports:
+      - "9090:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    restart: on-failure
+    links:
+      - acmedb_container
+    depends_on:
+      - acmedb_container # This service depends on mysql. Start that first.
+    environment: # Pass environment variables to the service
+      #SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/demo?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+      MYSQL_HOST: acmedb_container
+      MYSQL_PORT: 3306
+      MYSQL_DBNAME: acme_inc
+      MYSQL_USERNAME: ely
+      MYSQL_PASSWORD: ely123
+
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      - backend
+      - frontend
+
+  # Frontend Service
+  acme_frontend_container:
+    container_name: acme_frontend_container
+    image: acme_frontend_image:latest
+    #build:
+      #context: angular-11-social-login # Use an image built from the specified dockerfile in the `angular-11-social-login` directory.
+      #dockerfile: Dockerfile
+      #args:
+        #API_BASE_URL: http://localhost:9090/
+    ports:
+      - "4200:80" # Map the exposed port 80 on the container to port 8081 on the host machine
+    restart: on-failure
+    depends_on:
+      - acme_backend_container
+    networks:
+      - frontend
+
+  # Database Service (Mysql)
+  acmedb_container:
+    container_name: acmedb_container
+    image: mysql:latest
+    ports:
+      - "3307:3306"
+    restart: on-failure
+    environment:
+      MYSQL_DATABASE: acme_inc
+      MYSQL_USER: ely
+      MYSQL_PASSWORD: ely123
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - backend
+
+# Networks to be created to facilitate communication between containers
+networks:
+  backend:
+  frontend:
+
+volumes:
+  dbdata:

@@ -7,6 +7,7 @@ import {JwtResponse} from "../models/JwtResponse";
 import {JwtRequest} from "../models/JwtRequest";
 import {Router} from "@angular/router";
 import {AuthUser} from "./authUser";
+import {environment} from "../../environments/environment";
 
 
 @Injectable({
@@ -16,6 +17,7 @@ export class AuthenticationService {
 
   currentUser = new BehaviorSubject<AuthUser | null>(null);
   private tokenExpirationTimer: any;
+  private apiServiceUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient, private dateService: DateService, private router: Router) {
   }
@@ -23,7 +25,7 @@ export class AuthenticationService {
   login(username: string, password: string): Observable<JwtResponse> {
     let jwtRequest: JwtRequest = {username: username, password: password};
 
-    return this.http.post<JwtResponse>('http://localhost:8080/authenticate',
+    return this.http.post<JwtResponse>(`${this.apiServiceUrl}/authenticate`,
       jwtRequest).pipe(
       tap((resp: JwtResponse) => this.setSession(resp)),
       shareReplay()
