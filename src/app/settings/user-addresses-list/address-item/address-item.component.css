@@ -1,14 +1,18 @@
-#btn btn-primary tooltips {
-  margin-left :10px
+
+#editButton {
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 5px;
+  position: relative;
+  top: -5px;
 }
 
-#address-container{
-  margin-right:20px;
-
-}
-
-list-group-item-text float-left{
-  color: red;
+#deleteButton {
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 5px;
+  position: relative;
+  top: -5px;
 }
 
 .fa-pencil{

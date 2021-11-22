@@ -1,0 +1,78 @@
+<!--<p>user-orders works!</p>
+
+&lt;!&ndash;<table mat-table [dataSource]="userOrders" class="mat-elevation-z8">&ndash;&gt;
+
+<table mat-table [dataSource]="userOrders" class="mat-elevation-z8">
+
+
+  &lt;!&ndash; - Note that these columns can be defined in any order.
+  The actual rendered columns are set as a property on the row definition"&ndash;&gt;
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Id</th>
+    <td mat-cell *matCellDef="let userOrder"> {{userOrder.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="order date">
+    <th mat-header-cell *matHeaderCellDef> Date</th>
+    <td mat-cell *matCellDef="let userOrder"> {{userOrder.orderDate}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="order status">
+    <th mat-header-cell *matHeaderCellDef> Status</th>
+    <td mat-cell *matCellDef="let userOrder"> {{userOrder.oderStatus}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="order total price">
+    <th mat-header-cell *matHeaderCellDef> Price</th>
+    <td mat-cell *matCellDef="let userOrder"> {{userOrder.totalPrice}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="order shipping">
+    <th mat-header-cell *matHeaderCellDef> Shipping</th>
+    <td mat-cell *matCellDef="let userOrder"> {{userOrder.shipping.shippingName}}: {{userOrder.shipping.shippingPrice}}
+      €
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="order payment">
+    <th mat-header-cell *matHeaderCellDef> Price</th>
+    <td mat-cell
+        *matCellDef="let userOrder"> {{userOrder.payment.paymentType}} {{userOrder.payment.amount}} {{userOrder.payment.paymentStatus}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>-->
+
+
+<h1>My Orders</h1>
+<hr>
+<table id="userOrdersTable">
+  <tr>
+    <th>Id</th>
+    <th>Order Date</th>
+    <th>Order Status</th>
+    <th>Total Price</th>
+    <th>Shipping</th>
+    <th>Payment</th>
+    <th>Products</th>
+  </tr>
+  <tbody>
+  <tr *ngFor="let order of orderHistory">
+    <td>{{order.id}}</td>
+    <td>{{order.orderDate}}</td>
+    <td>{{order.orderStatus}}</td>
+    <td>{{order.totalPrice}}</td>
+    <td>{{order.shipping.shippingName}} {{order.shipping.shippingPrice}}</td>
+    <td>{{order.payment.paymentType}} {{order.payment.paymentStatus}} {{order.payment.amount}}€</td>
+    <td>
+      <p *ngFor="let productsOrderData of order.productOrderList">
+        <img class="img-responsive float-left"
+             style="max-height: 30px;" src="{{productsOrderData.product.imageURL}}">
+        {{productsOrderData.product.productName}} x {{productsOrderData.quantity}} = {{productsOrderData.orderLinePrice}}
+      </p>
+    </td>
+  </tr>
+  </tbody>
+</table>

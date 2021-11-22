@@ -14,6 +14,8 @@ services:
     ports:
       - "9090:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
     restart: on-failure
+    volumes:
+      - acmedata:/var/lib/mysql
     links:
       - acmedb_container
     depends_on:
@@ -71,3 +73,4 @@ networks:
 
 volumes:
   dbdata:
+  acmedata:

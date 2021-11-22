@@ -9,9 +9,8 @@
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"/>
 </head>
-<div class="offset-md-2 col-xl-12 col-md-12 col-xs-12">
-  <p>category-detail works!</p>
-  <img src="{{category?.imageURL}}">
+<div class="col-xl-12 col-md-12 col-xs-12">
+  <img id="categoryImage" class="img-responsive" style="max-height: 650px;" src="{{category?.imageURL}}">
   <h1>{{category?.name}}</h1>
   <a> {{category?.description}}</a>
 </div>

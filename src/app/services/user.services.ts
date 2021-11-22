@@ -26,6 +26,8 @@ export class UserServices{
   }
 
   public updateUser(user: User): Observable<User>{
+    console.log('user creation date before put: ' + user.creationDate);
+    console.log(user)
     return this.http.put<User>(`${this.apiServiceUrl}/user/update`, user);
   }
 

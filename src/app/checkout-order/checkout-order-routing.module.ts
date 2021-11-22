@@ -23,6 +23,4 @@ const checkoutOrderRoutes: Routes = [
   imports:[RouterModule.forChild(checkoutOrderRoutes)],
   exports: [RouterModule]
   })
-export class CheckoutOrderRoutingModule {
-
-}
+export class CheckoutOrderRoutingModule {}

@@ -20,6 +20,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute) {
   }
 
+  // Get category list
   ngOnInit(): void {
     this.getCategories()
   }

@@ -11,10 +11,9 @@
           {{ addressItem.city }}
           {{ addressItem.country }}
         </p>
-        <a (click)="onOpenModal(addressItem, 'edit')" class="btn btn-primary tooltips float-right" data-placement="top"
+        <a (click)="onOpenModal(addressItem, 'edit')" class="btn btn-primary tooltips" id="editButton"
            data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-        <a (click)="onOpenModal(addressItem, 'delete')" class="btn btn-secondary tooltips float-right"
-           data-placement="top"
+        <a (click)="onOpenModal(addressItem, 'delete')"  class="btn btn-secondary tooltips" id="deleteButton"
            data-original-title="Delete"><i class="fa fa-times" style=""></i></a>
       </div>
     </div>

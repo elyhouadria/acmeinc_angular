@@ -9,6 +9,8 @@
   font-family: "Open Sans", sans-serif;
 }
 
+
+
 /************************/
 
 body {
@@ -26,6 +28,8 @@ body {
 
 }
 
+
+
 a {
   display: inline-block;
   border-radius: inherit;
@@ -36,14 +40,19 @@ a {
 }
 
 
-:hover {
-  background-color: darken(#ff0000, 10%);
-}
+
 
 span {
   margin-left: 2px;
 }
 
+label {
+  padding: 3px;
+}
+
+input {
+  padding: 3px;
+}
 
 
 /********************/

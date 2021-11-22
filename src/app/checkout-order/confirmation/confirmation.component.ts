@@ -25,6 +25,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute,
               private router: Router) { }
 
+  // Display order confirmation and set redirect to home page after 5s
   ngOnInit(): void {
     this.orderDetailsSource = this.orderService.currentOrderSource.subscribe((orderDetails: OrderDetails | null) => {
       this.userOrder = <UserOrder>orderDetails?.userOrder;

@@ -18,6 +18,7 @@ export class CartComponent implements OnInit {
     this.cartService.currentCartContent.subscribe(cartContent => this.cartContent = cartContent)
   }
 
+  //remove item from shopping cart
   public removeCartItem(i: number) {
     this.cartContent?.splice(i,1);
     this.cartService.cartContentSource.next(this.cartContent.slice());

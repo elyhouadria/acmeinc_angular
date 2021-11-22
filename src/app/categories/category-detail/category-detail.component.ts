@@ -25,6 +25,7 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
                 private router: Router,
                 private productServices: ProductService) {}
 
+  // Get product list by category
     ngOnInit(): void {
       this.routeParamSub = this.route.params.subscribe(
         (params: Params) => {

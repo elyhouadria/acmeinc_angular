@@ -9,6 +9,8 @@ import { EditAddressModalComponent } from './user-addresses-list/address-item/ed
 import { DeleteAddressModalComponent } from './user-addresses-list/address-item/delete-address-modal/delete-address-modal.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { NewAddressModalComponent } from './user-addresses-list/new-address-modal/new-address-modal.component';
+import { UserOrdersComponent } from './user-orders/user-orders.component';
+import {MatTableModule} from "@angular/material/table";
 
 
 @NgModule({
@@ -20,12 +22,14 @@ import { NewAddressModalComponent } from './user-addresses-list/new-address-moda
     EditAddressModalComponent,
     DeleteAddressModalComponent,
     NewAddressModalComponent,
+    UserOrdersComponent,
   ],
     imports: [
         SettingsRoutingModule,
         CommonModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatTableModule
     ]
 })
 export class SettingsModule {}

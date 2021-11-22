@@ -5,6 +5,8 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {AuthenticationService} from "../../../../auth/authentication.service";
+import {Router} from "@angular/router";
+import {UserAddressesComponent} from "../../user-addresses.component";
 
 @Component({
   selector: 'app-edit-address-modal',
@@ -101,6 +103,7 @@ export class EditAddressModalComponent implements OnInit, OnDestroy {
     return this.editAddressForm.get('country');
   }
 
+
   onUpdateAddress(editForm: FormControl): void {
     let editedAddress: Address = this.editAddressForm.value;
     document.getElementById('close-edit-modal')!.click();
@@ -114,5 +117,6 @@ export class EditAddressModalComponent implements OnInit, OnDestroy {
         alert(error.message);
       }
     )
+
   }
 }

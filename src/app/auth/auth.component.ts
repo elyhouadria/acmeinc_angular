@@ -12,6 +12,7 @@ import {UrlService} from "../services/url.service";
 export class AuthComponent implements OnInit {
   form!: FormGroup;
   formSubmitted: boolean = false;
+  errorMessage?: string;
 
   constructor(private fb: FormBuilder, private authenticationService: AuthenticationService,
               private router: Router, private route: ActivatedRoute, private urlService: UrlService) {}
@@ -22,6 +23,8 @@ export class AuthComponent implements OnInit {
       'password': ['']
     });
   }
+
+  // Send authentication request to backend to identify user
   onSubmit(loginForm: any) {
     this.formSubmitted = true;
 
@@ -32,13 +35,17 @@ export class AuthComponent implements OnInit {
       let user$ = this.authenticationService.login(username, password);
       user$.subscribe(
         (jwtResponse: JwtResponse) => this.handleLoginResponse(jwtResponse),
-        err => console.error(err)
+        (err: Error) => {
+          this.errorMessage = err.message;
+        }
       );
     } else {
       console.log("The form is NOT valid");
       this.formSubmitted = false;
     }
   }
+
+  // Check presence of token in response
   handleLoginResponse(jwtResponse: JwtResponse) {
     console.log(jwtResponse);
     if (jwtResponse && jwtResponse.token) {
@@ -46,6 +53,7 @@ export class AuthComponent implements OnInit {
     }
     this.formSubmitted = false;
   }
+  // redirect user after authentication
   private goToRoute() {
     let map: ParamMap = this.route.snapshot.queryParamMap;
     let returnUrl = map.get('returnUrl');
@@ -57,7 +65,6 @@ export class AuthComponent implements OnInit {
     } else {
       returnUrl = '/home';
     }
-
     this.router.navigate([returnUrl], queryParams);
   }
 }

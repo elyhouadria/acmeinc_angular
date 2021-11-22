@@ -17,13 +17,15 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {CategoriesModule} from "./categories/categories.module";
 import {ProductListModule} from "./product-list/product-list.module";
 import {HomeModule} from "./home/home.module";
-import {CommonModule} from "@angular/common";
+import {CommonModule, DatePipe} from "@angular/common";
 import {ProductCartModule} from "./product-cart/product-cart.module";
 import {CheckoutOrderModule} from "./checkout-order/checkout-order.module";
 import { SearchResultPageComponent } from './search-result-page/search-result-page.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { ProductPaginationComponent } from './product-pagination/product-pagination.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 
 @NgModule({
@@ -55,9 +57,11 @@ import { ProductPaginationComponent } from './product-pagination/product-paginat
     ProductListModule,
     HomeModule,
     ProductCartModule,
-    CheckoutOrderModule
+    CheckoutOrderModule,
+    MatCardModule,
+    MatGridListModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
+  providers: [DatePipe,{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
   exports: [
 
   ],

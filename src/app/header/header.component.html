@@ -1,6 +1,8 @@
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mainNavBar">
-  <a class="navbar-brand" style="color:white" routerLink="/home">ACME.inc</a>
+  <a class="navbar-brand" style="color:white" routerLink="/home">ACME.inc
+    <img class="img-responsive" style="max-height: 40px;" src="../../assets/img/acme-logo.png">
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
           aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -8,14 +10,17 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav ml-auto w-100 justify-content-end">
       <li class="nav-item active" *ngIf="!isAuthenticated">
-        <a class="nav-link" id="createUserLink" style="cursor: pointer" (click)="onOpenModal(null, 'add')">Create Account<span class="sr-only">(current)</span></a>
+        <a class="nav-link" id="createUserLink" style="cursor: pointer" (click)="onOpenModal(null, 'add')">Create
+          Account<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active" *ngIf="!isAuthenticated">
         <a class="nav-link" id="loginLink" routerLink="/login" style="cursor: pointer">Login<span
           class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active" *ngIf="isAuthenticated">
-        <a class="nav-link" id="userName" routerLink="/settings/profile" style="cursor: pointer"><i class="fa fa-cogs" aria-hidden="true"></i> Hello {{userName}}<span class="sr-only">(current)</span></a>
+        <a class="nav-link" id="userName" routerLink="/settings/profile" style="cursor: pointer"><i class="fa fa-cogs"
+                                                                                                    aria-hidden="true"></i>
+          Hello {{userName}}<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active" *ngIf="isAuthenticated">
         <a class="nav-link" id="logoutLink" (click)="onLogout()" style="cursor: pointer">Logout<span class="sr-only">(current)</span></a>

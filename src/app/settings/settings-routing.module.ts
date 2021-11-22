@@ -6,6 +6,7 @@ import {UserDetailsComponent} from "./user-details/user-details.component";
 import {UserAddressesComponent} from "./user-addresses-list/user-addresses.component";
 import {EditAddressModalComponent} from "./user-addresses-list/address-item/edit-address-modal/edit-address-modal.component";
 import {NewAddressModalComponent} from "./user-addresses-list/new-address-modal/new-address-modal.component";
+import {UserOrdersComponent} from "./user-orders/user-orders.component";
 
 
 const settingRoutes: Routes = [
@@ -14,6 +15,7 @@ const settingRoutes: Routes = [
     component: SettingsComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: 'orders', component: UserOrdersComponent},
       { path: 'profile', component: UserDetailsComponent },
       {
         path: 'addresses',

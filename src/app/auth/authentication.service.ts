@@ -22,6 +22,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient, private dateService: DateService, private router: Router) {
   }
 
+  // Authenticate user and start user session
   login(username: string, password: string): Observable<JwtResponse> {
     let jwtRequest: JwtRequest = {username: username, password: password};
 
@@ -32,6 +33,7 @@ export class AuthenticationService {
     );
   }
 
+  //Write session data in local storage
   private setSession(authResult: JwtResponse) {
     const expiresAt = authResult.expirationDate;
     const authUser = new AuthUser(authResult.user.id, authResult.user.lastName, authResult.user.firstName, authResult.user.email, authResult.token, new Date(expiresAt));
@@ -89,6 +91,7 @@ export class AuthenticationService {
     return <string>localStorage.getItem('id_token');
   }
 
+  //check if user has session data in local storage and of it is valid
   autologin() {
     // identify user from local storage based on date of token
     let userId: string | null = localStorage.getItem('userId');

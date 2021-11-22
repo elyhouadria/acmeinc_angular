@@ -55,11 +55,4 @@ export class CheckoutOrderComponent implements OnInit {
       this.currentUserId = user?.userId;
     });
   }
-
-
-
-
-
-
-
 }

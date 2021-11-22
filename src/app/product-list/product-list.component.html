@@ -11,56 +11,55 @@
 </head>
 <body>
 <div class="row">
-<div class="col-xl-9 col-md-9 col-xs-9">
-<div class="container">
+  <div class="col-xl-9 col-md-9 col-xs-9">
+    <div class="container">
 
-  <div class="row">
-    <div *ngFor="let product of products; let i = index;" class="col-xl-4 col-md-4 col-xs-4">
-      <form #productForm="ngForm" (ngSubmit)="OnAddProductToCart(product, quantity)">
-        <div class="card border-0 mb-5 shadow-lg _offer">
+      <div class="row">
+        <div *ngFor="let product of products; let i = index;" class="col-xl-4 col-md-4 col-xs-4">
+          <form #productForm="ngForm" (ngSubmit)="OnAddProductToCart(product, quantity)">
+            <div class="card border-0 mb-5 shadow-lg _offer">
 
-          <a class="nav-link" routerLink="/product/{{product?.id}}">
-          <img src="{{product?.imageURL}}"
-               alt="image"
-               class="card-img-top border-bottom"
-               id="productImage"
-          />
-          </a>
-          <div class="card-body position-relative">
-            <div class="d-flex justify-content-between">
-              <h4 class="card-title text-truncate font-weight-bold">
-                {{product?.productName}}
-              </h4>
-            </div>
+              <a class="nav-link" routerLink="/product/{{product?.id}}">
+                <img src="{{product?.imageURL}}"
+                     alt="image"
+                     class="card-img-top border-bottom"
+                     id="productImage"
+                />
+              </a>
+              <div class="card-body position-relative">
+                <div class="d-flex justify-content-between">
+                  <h4 class="card-title text-truncate font-weight-bold">
+                    {{product?.productName}}
+                  </h4>
+                </div>
 
-            <div class="card-subtitle text-muted text-truncate my-2">
-              {{product?.productDescription}}
-            </div>
-            <div id="productQuantityDiv{{i}}">
-              <input type="number" min="1" max="10" value="1" [(ngModel)]="quantity" name="productQuantity{{i}}" id="productQuantity{{i}}"></div>
-            <div class="card-text d-flex justify-content-between mt-5 mb-3">
-              <span class="_priceSection position-relative">
-                  <div class="_now h5 _textPink font-weight-bolder">{{product?.productPrice}}</div>
-
+                <div class="card-subtitle text-muted text-truncate my-2">
+                  {{product?.productDescription}}
+                </div>
+                <div class="card-text d-flex justify-content-between mt-5 mb-3">
+                </div>
+                  <div  style = "position:relative; left:30%;" id="productQuantityDiv{{i}}" class="numberSelector">
+                    <label for="productQuantity{{i}}">Quantity</label>
+                    <input #quantity type="number" min="1" max="10" value="1" name="productQuantity{{i}}"
+                           id="productQuantity{{i}}"></div>
+                  <span class="_priceSection position-relative">
+                  <div style = "position:relative; left:70%;" class="_now h5 _textPink font-weight-bolder">{{product?.productPrice}} €</div>
                 </span>
+                  <button style = "position:relative; left:25%;"
+                    class="btn p-3 _cartBtn rounded-0 _bgPink text-white text-uppercase d-inline-flex align-items-center position-absolute"
+                    type="submit" >
+                    <span>Add to cart</span><i class="material-icons ml-2 font-weight-light">add_shopping_cart</i>
+                  </button>
+              </div>
             </div>
-            <div>
-
-            </div>
-            <button
-              class="btn p-3 _cartBtn rounded-0 _bgPink text-white text-uppercase d-inline-flex align-items-center position-absolute"
-              type="submit">
-              <span>Add to cart</span><i class="material-icons ml-2 font-weight-light">add_shopping_cart</i></button>
-          </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   </div>
-</div>
-</div>
-<div class="col-xl-3 col-md-3 col-xs-3" *ngIf="cartContent.length">
-  <app-product-cart></app-product-cart>
-</div>
+  <div class="col-xl-3 col-md-3 col-xs-3" *ngIf="cartContent.length">
+    <app-product-cart></app-product-cart>
+  </div>
   <div class="col-xl-3 col-md-3 col-xs-3" *ngIf="!cartContent.length">
     <P>Please select a product.</P>
   </div>

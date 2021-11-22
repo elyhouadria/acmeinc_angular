@@ -40,15 +40,17 @@ export class ShoppingCartService {
       product:{
         id: product.id
       },
-      quantity: quantity
+      quantity: quantity,
+      orderLinePrice: product.productPrice*quantity
     }
+    console.log("orderLine Price: " + newOrderLine.orderLinePrice)
     let newCartItem: ShoppingCartItem;
     newCartItem = <ShoppingCartItem>{
       product: <Product>product,
       orderLine: <OrderLine>newOrderLine
     };
     this.cartContent.push(newCartItem);
-    this.changeCartContent(this.cartContent);
+    this.changeCartContent(this.cartContent.slice());
     this.cartContentSource.next(this.cartContent.slice());
   }
 

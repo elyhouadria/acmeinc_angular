@@ -53,8 +53,7 @@ export class OrderDetailsComponent implements OnInit {
               private cartService: ShoppingCartService,
               private addressService: AddressService,
               private authService: AuthenticationService,
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.cartService.currentCartContent
@@ -85,25 +84,17 @@ export class OrderDetailsComponent implements OnInit {
   getTotalPrice(cartContent: ShoppingCartItem[]) {
     let price: number = 0;
     for (let i = 0; i < cartContent.length; i++) {
-      price += cartContent[i].product.productPrice * cartContent[i].orderLine.quantity
+      price += cartContent[i].product.productPrice*cartContent[i].orderLine.quantity
     }
     this.totalPrice = Number((price + this.shippingPrice).toFixed(2));
     console.log(this.shippingPrice)
   }
 
   onSubmit(orderDetailsForm: NgForm) {
-    console.log("userOrder.shippingAddress: " + this.userOrder.shippingAddress.id);
-    console.log("userOrder.billingAddress: " + this.userOrder.billingAddress.id);
-    console.log("onShippingTypeChangeId: " + this.userOrder.shipping.id);
-
     this.userOrder.shippingAddress = {'id': this.orderDetailsForm.value['shippingAddress']};
     this.userOrder.billingAddress = {'id': this.orderDetailsForm.value['billingAddress']};
     this.userOrder.shipping = {'id': this.orderDetailsForm.value['shipping']};
     this.selectedPaymentType = this.orderDetailsForm.value['payment'];
-
-    console.log("after userOrder.shippingAddress: " + this.userOrder.shippingAddress.id);
-    console.log("after userOrder.billingAddress: " + this.userOrder.billingAddress.id);
-    console.log("after onShippingTypeChangeId: " + this.userOrder.shipping.id);
 
     let userOrderDetails: OrderDetails = <OrderDetails>{
       userOrder: this.userOrder,

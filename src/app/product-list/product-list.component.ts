@@ -12,20 +12,36 @@ import {ShoppingCartService} from "../services/shopping-cart.service";
 })
 export class ProductListComponent implements OnInit {
 
-  @Input() public products: Product[] = [];
+  @Input() public products: Product[] | null = [];
   public cartContent: ShoppingCartItem[] = [];
-  public quantity: number = 1;
 
   constructor(private productServices: ProductService,
               private dataServices: DataServices,
-              private cartService: ShoppingCartService) {}
+              private cartService: ShoppingCartService) {
+  }
 
   ngOnInit(): void {
     this.cartService.currentCartContent.subscribe(cartContent => this.cartContent = cartContent)
   }
 
-  OnAddProductToCart(product: Product, quantity: number) {
-    this.cartService.addProductToCart(product, quantity);
-  }
+  // Add product to cart. If product is already in cart update quantity of relevant SLItem.
 
+  OnAddProductToCart(product: Product, htmlInputElement: HTMLInputElement) {
+    let quantity = Number(htmlInputElement.value)
+    let shoppingCartItemIndex: number | null = null;
+    for (let i = 0; i <= this.cartContent.length-1; i++) {
+      if (this.cartContent[i].product.id === product.id) {
+        shoppingCartItemIndex = i
+      }
+    }
+    if (shoppingCartItemIndex !== null){
+      this.cartContent[shoppingCartItemIndex].orderLine.quantity += quantity;
+      this.cartContent[shoppingCartItemIndex].orderLine.orderLinePrice = this.cartContent[shoppingCartItemIndex].orderLine.quantity*this.cartContent[shoppingCartItemIndex].product.productPrice;
+      shoppingCartItemIndex = null;
+      this.cartService.changeCartContent(this.cartContent.slice());
+    }
+    else {
+      this.cartService.addProductToCart(product, quantity);
+    }
+  }
 }

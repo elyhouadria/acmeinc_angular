@@ -9,7 +9,6 @@ import {Payment} from "../../models/payment";
 import {PaymentService} from "../../services/payment.service";
 import {AuthenticationService} from "../../auth/authentication.service";
 import {AuthUser} from "../../auth/authUser";
-import {OrderLine} from "../../models/orderLine";
 import {OrderlineService} from "../../services/orderline.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -114,16 +113,20 @@ export class PaymentComponent implements OnInit, OnDestroy {
         this.orderService.currentOrderSource.next(newOrderDetails);
         for (let i = 0; i < this.cartContent!.length; i++) {
 
-          let newOrderLine: OrderLine = <OrderLine>{
+          this.cartContent![i].orderLine.userOrder = {
+            id : <number>this.userOrder?.id };
+
+/*          let newOrderLine: OrderLine = <OrderLine>{
             quantity: <number>this.cartContent![i].orderLine.quantity,
             product: {
               id: <number><number>this.cartContent![i].product.id
             },
             userOrder: {
               id: <number>order.id
-            }
-          }
-          this.orderLineService.addOrderLine(newOrderLine).subscribe();
+            },
+            orderLinePrice: <number>this.cartContent![i].orderLine.quantity
+          }*/
+          this.orderLineService.addOrderLine(this.cartContent![i].orderLine).subscribe();
         }
       });
     });

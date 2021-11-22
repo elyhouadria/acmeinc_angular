@@ -3,6 +3,9 @@ import {MatPaginator} from "@angular/material/paginator";
 import {ProductPaginationDataSource} from "../services/product-pagination-data.source";
 import {ProductService} from "../services/product.service";
 import {tap} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {CollectionViewer} from "@angular/cdk/collections";
+import {Product} from "../models/product";
 
 @Component({
   selector: 'app-product-pagination',
@@ -11,9 +14,11 @@ import {tap} from "rxjs/operators";
 })
 export class ProductPaginationComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  public productPaginationDataSource!: ProductPaginationDataSource
-  displayedColumns = ['id', 'product name', 'product description'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  public productPaginationDataSource!: ProductPaginationDataSource
+  // Contains paginated list of products
+  obs!: Observable<Product[]>;
+  quantity: any;
 
 
   constructor(private productService: ProductService) {}
@@ -21,6 +26,7 @@ export class ProductPaginationComponent implements OnInit, AfterViewInit, OnDest
   ngOnInit(): void {
     this.productPaginationDataSource = new ProductPaginationDataSource(this.productService)
     this.productPaginationDataSource.loadProductPagination();
+    this.obs = this.productPaginationDataSource.connect();
   }
 
   ngAfterViewInit(): void {
@@ -41,6 +47,6 @@ export class ProductPaginationComponent implements OnInit, AfterViewInit, OnDest
   }
 
   ngOnDestroy(): void {
-
+    this.paginator.page.unsubscribe();
   }
 }

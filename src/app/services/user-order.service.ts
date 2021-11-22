@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {OrderDetails} from "../models/order-details";
+import {OrderHistoryItem} from "../models/order-history-item";
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,8 @@ export class UserOrderService {
     return this.http.post<UserOrder>(`${this.apiServiceUrl}/userorder/add`, order);
   }
 
-  public getOrdersByUserId(id: number): Observable<UserOrder[]>{
-    return this.http.get<UserOrder[]>(`${this.apiServiceUrl}/address/findOrdersByUserId/${id}`)
+  public getOrdersByUserId(id: number): Observable<OrderHistoryItem[]>{
+    return this.http.get<OrderHistoryItem[]>(`${this.apiServiceUrl}/userorder/findOrdersByUserId/${id}`)
   }
 
 }

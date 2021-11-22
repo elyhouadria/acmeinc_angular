@@ -5,6 +5,7 @@ import {UserServices} from "../../services/user.services";
 import {User} from "../../models/user";
 import {FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-user-details',
@@ -19,9 +20,9 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   private currentUserId!: number | undefined;
   currentUser!: User;
 
-
   constructor(private authService: AuthenticationService,
-              private userService: UserServices) {
+              private userService: UserServices,
+              private datePipe: DatePipe) {
   }
 
   ngOnInit(): void {
@@ -31,10 +32,12 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
     });
     this.userService.getUserById(<number>this.currentUserId)
       .subscribe((response: User) => {
+        console.log('response date: ' + response.creationDate);
         this.currentUser = response
         this.initEditProfileForm()
         console.log('response: ' + response);
         console.log('currentUser: ' + this.currentUser);
+        console.log('currentUser date: ' + this.currentUser.creationDate);
       });
     this.initEditProfileForm()
   }
@@ -52,6 +55,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
       ]),
       email: new FormControl(this.currentUser?.email),
       //password: new FormControl(this.currentUser?.password),
+      password: new FormControl('************'),
       creationDate: new FormControl(this.currentUser?.creationDate),
       authorities: new FormControl(this.currentUser?.roles)
     })
@@ -71,10 +75,18 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   onUpdateProfile() {
     this.currentUser.firstName = <string>this.editProfileForm.value['firstName'];
     this.currentUser.lastName = <string>this.editProfileForm.value['lastName'];
-    //Works but I need to deal with date problem between angular and Mysql/Spring
+
+    // Set date to dd-MM-yyyy so it can be understood by the spring backend
+    let newDate = this.datePipe.transform(this.currentUser.creationDate, 'dd-MM-yyyy');
+    this.currentUser.creationDate = <string>newDate;
+
+    console.log('user creation date :' + this.currentUser.creationDate + "NewDate: " + newDate);
+
     this.userService.updateUser(this.currentUser).subscribe(
       (response: User) => {
         this.currentUser = response;
+        this.ngOnInit();
+        alert('User Updated.');
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

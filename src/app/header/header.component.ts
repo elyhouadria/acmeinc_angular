@@ -28,6 +28,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private router: Router,
               private route: ActivatedRoute) {}
 
+  // Get user id and details
+
   ngOnInit() {
     this.userSub = this.authenticationService.currentUser.subscribe(authUser => {
       this.isAuthenticated = !!authUser;
@@ -38,6 +40,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.userSub!.unsubscribe()
   }
+
+  // Create user modal
 
   public onOpenModal(user: User | null, mode: string): void {
     const container = document.getElementById('mainNavBar')
@@ -52,6 +56,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     button.click();
   }
 
+  // Search
   public searchProducts(keyword: string): void {
     this.router.navigate([`search/${keyword}`], {queryParamsHandling: 'preserve'})
   }
