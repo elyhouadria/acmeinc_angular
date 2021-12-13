@@ -115,17 +115,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
           this.cartContent![i].orderLine.userOrder = {
             id : <number>this.userOrder?.id };
-
-/*          let newOrderLine: OrderLine = <OrderLine>{
-            quantity: <number>this.cartContent![i].orderLine.quantity,
-            product: {
-              id: <number><number>this.cartContent![i].product.id
-            },
-            userOrder: {
-              id: <number>order.id
-            },
-            orderLinePrice: <number>this.cartContent![i].orderLine.quantity
-          }*/
           this.orderLineService.addOrderLine(this.cartContent![i].orderLine).subscribe();
         }
       });

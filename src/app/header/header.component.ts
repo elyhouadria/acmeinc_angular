@@ -29,7 +29,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute) {}
 
   // Get user id and details
-
   ngOnInit() {
     this.userSub = this.authenticationService.currentUser.subscribe(authUser => {
       this.isAuthenticated = !!authUser;
@@ -42,7 +41,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   // Create user modal
-
   public onOpenModal(user: User | null, mode: string): void {
     const container = document.getElementById('mainNavBar')
     const button = document.createElement('button');

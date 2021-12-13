@@ -117,6 +117,5 @@ export class EditAddressModalComponent implements OnInit, OnDestroy {
         alert(error.message);
       }
     )
-
   }
 }

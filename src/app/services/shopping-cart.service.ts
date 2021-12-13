@@ -43,7 +43,6 @@ export class ShoppingCartService {
       quantity: quantity,
       orderLinePrice: product.productPrice*quantity
     }
-    console.log("orderLine Price: " + newOrderLine.orderLinePrice)
     let newCartItem: ShoppingCartItem;
     newCartItem = <ShoppingCartItem>{
       product: <Product>product,

@@ -4,7 +4,6 @@ import {ProductPaginationDataSource} from "../services/product-pagination-data.s
 import {ProductService} from "../services/product.service";
 import {tap} from "rxjs/operators";
 import {Observable} from "rxjs";
-import {CollectionViewer} from "@angular/cdk/collections";
 import {Product} from "../models/product";
 
 @Component({

@@ -32,12 +32,8 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
     });
     this.userService.getUserById(<number>this.currentUserId)
       .subscribe((response: User) => {
-        console.log('response date: ' + response.creationDate);
         this.currentUser = response
         this.initEditProfileForm()
-        console.log('response: ' + response);
-        console.log('currentUser: ' + this.currentUser);
-        console.log('currentUser date: ' + this.currentUser.creationDate);
       });
     this.initEditProfileForm()
   }
@@ -79,8 +75,6 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
     // Set date to dd-MM-yyyy so it can be understood by the spring backend
     let newDate = this.datePipe.transform(this.currentUser.creationDate, 'dd-MM-yyyy');
     this.currentUser.creationDate = <string>newDate;
-
-    console.log('user creation date :' + this.currentUser.creationDate + "NewDate: " + newDate);
 
     this.userService.updateUser(this.currentUser).subscribe(
       (response: User) => {

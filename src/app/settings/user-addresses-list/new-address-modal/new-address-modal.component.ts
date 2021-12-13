@@ -88,6 +88,7 @@ export class NewAddressModalComponent implements OnInit, OnDestroy {
     this.addressServices.addAddress(newAddress).subscribe(
       (response: Address) => {
         this.addAddressForm.reset();
+        alert("Address Created");
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

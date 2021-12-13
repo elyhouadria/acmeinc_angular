@@ -10,10 +10,13 @@
 #
 #COPY . .
 #
-#EXPOSE 4200
+#EXPOSE 80
 #
 #CMD ["npm", "start"]
 
 FROM nginx:alpine
 COPY /dist/acmeincapp /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
+
+

@@ -40,7 +40,6 @@ export class AuthComponent implements OnInit {
         }
       );
     } else {
-      console.log("The form is NOT valid");
       this.formSubmitted = false;
     }
   }
